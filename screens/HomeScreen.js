@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,6 @@ import TechniqueCard from '../components/TechniqueCard';
 export default function HomeScreen({ onSelect, scrollOffset }) {
   const scrollRef = useRef(null);
 
-  // Restore scroll position after mount
   useEffect(() => {
     if (scrollOffset.current > 0 && scrollRef.current) {
       scrollRef.current.scrollTo({ y: scrollOffset.current, animated: false });
