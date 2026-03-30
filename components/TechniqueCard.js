@@ -3,13 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { alpha, colors } from '../constants/colors';
 
-const MAX_VISIBLE_PILLS = 4;
-
-// Capitalise the phase type to use as a short pill label ("inhale" → "Inhale").
-function phaseTypeLabel(type) {
-  return type.charAt(0).toUpperCase() + type.slice(1);
-}
-
 function TechniqueCard({ technique, onPress }) {
   const handlePress = useCallback(() => onPress(technique), [onPress, technique]);
 
@@ -25,7 +18,7 @@ function TechniqueCard({ technique, onPress }) {
           <View style={styles.cardText}>
             <Text style={styles.cardName}>{technique.name}</Text>
             <Text style={styles.cardSubtitle}>{technique.subtitle}</Text>
-            <Text style={styles.cardDescription} numberOfLines={2}>
+            <Text style={styles.cardDescription}>
               {technique.description}
             </Text>
           </View>
@@ -34,18 +27,6 @@ function TechniqueCard({ technique, onPress }) {
           </View>
         </View>
 
-        <View style={styles.phasePills}>
-          {technique.phases.slice(0, MAX_VISIBLE_PILLS).map((phase, i) => (
-            <View
-              key={`${phase.type}-${phase.duration}-${i}`}
-              style={[styles.pill, { backgroundColor: alpha(technique.accentColor, 0.16) }]}
-            >
-              <Text style={[styles.pillText, { color: technique.accentColor }]}>
-                {phaseTypeLabel(phase.type)} {phase.duration}s
-              </Text>
-            </View>
-          ))}
-        </View>
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -100,20 +81,5 @@ const styles = StyleSheet.create({
     fontSize: 26,
     lineHeight: 30,
     marginLeft: 2,
-  },
-  phasePills: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 6,
-    marginTop: 14,
-  },
-  pill: {
-    borderRadius: 20,
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-  },
-  pillText: {
-    fontSize: 12,
-    fontWeight: '500',
   },
 });

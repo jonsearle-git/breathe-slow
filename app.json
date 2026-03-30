@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "breathe-slow",
+    "name": "Breathe Slow",
     "slug": "breathe-slow",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,22 +8,23 @@
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.searlesoft.breatheslow",
+      "buildNumber": "1"
     },
     "android": {
+      "package": "com.searlesoft.breatheslow",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }

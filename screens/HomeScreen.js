@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -11,26 +11,36 @@ import { TECHNIQUES } from '../constants/techniques';
 import { colors } from '../constants/colors';
 import TechniqueCard from '../components/TechniqueCard';
 
-export default function HomeScreen({ onSelect }) {
+export default function HomeScreen({ onSelect, scrollOffset }) {
+  const scrollRef = useRef(null);
+
+  // Restore scroll position after mount
+  useEffect(() => {
+    if (scrollOffset.current > 0 && scrollRef.current) {
+      scrollRef.current.scrollTo({ y: scrollOffset.current, animated: false });
+    }
+  }, []);
+
   return (
     <LinearGradient colors={['#e8f4f8', '#f0e8f5', '#e8f5ee']} style={styles.container}>
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView style={styles.safe} edges={['top', 'left', 'right']}>
         <View style={styles.header}>
           <Text style={styles.title}>Breathe Slow</Text>
-          <Text style={styles.subtitle}>Choose a technique to begin</Text>
         </View>
 
         <View style={styles.disclaimer}>
           <Text style={styles.disclaimerText}>
-            For general wellness only. Consult a healthcare professional if you have a
-            respiratory, cardiovascular, or other medical condition. Stop if you feel
-            dizzy or unwell.
+            For educational and wellness purposes only — not medical advice, diagnosis, or treatment. Consult a healthcare professional before use if you have any medical condition. Stop immediately if you feel unwell.
           </Text>
         </View>
 
         <ScrollView
+          ref={scrollRef}
           contentContainerStyle={styles.list}
           showsVerticalScrollIndicator={false}
+          onScroll={(e) => { scrollOffset.current = e.nativeEvent.contentOffset.y; }}
+          scrollEventThrottle={16}
+          style={styles.scroll}
         >
           {TECHNIQUES.map((technique) => (
             <TechniqueCard
@@ -39,7 +49,6 @@ export default function HomeScreen({ onSelect }) {
               onPress={onSelect}
             />
           ))}
-          <View style={styles.footer} />
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>
@@ -55,8 +64,8 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 28,
-    paddingTop: 32,
-    paddingBottom: 20,
+    paddingTop: 16,
+    paddingBottom: 10,
   },
   title: {
     fontSize: 36,
@@ -64,14 +73,12 @@ const styles = StyleSheet.create({
     color: '#2a4a5e',
     letterSpacing: 1,
   },
-  subtitle: {
-    fontSize: 16,
-    color: colors.textSecondary,
-    marginTop: 4,
-    fontWeight: '300',
+  scroll: {
+    backgroundColor: 'transparent',
   },
   list: {
     paddingHorizontal: 20,
+    paddingBottom: 28,
     gap: 14,
   },
   disclaimer: {
@@ -87,8 +94,5 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     fontWeight: '300',
     textAlign: 'center',
-  },
-  footer: {
-    height: 24,
   },
 });

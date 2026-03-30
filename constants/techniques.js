@@ -13,6 +13,7 @@ export const TECHNIQUES = [
       'Breathe deep into your belly, letting your diaphragm do the work. Ideal for everyday calm.',
     gradient: ['#a8d8ea', '#d0eef8'],
     accentColor: '#4a90b8',
+    animationType: 'expanding-circle',
     phases: [
       { label: 'Inhale', duration: 4, type: 'inhale' },
       { label: 'Exhale', duration: 6, type: 'exhale' },
@@ -27,6 +28,7 @@ export const TECHNIQUES = [
       'Equal parts inhale, hold, exhale, hold. A military favourite for staying composed.',
     gradient: ['#b0cfe8', '#d8ecf8'],
     accentColor: '#3a7fa0',
+    animationType: 'box-tracer',
     phases: [
       { label: 'Inhale', duration: 4, type: 'inhale' },
       { label: 'Hold', duration: 4, type: 'hold' },
@@ -43,6 +45,7 @@ export const TECHNIQUES = [
       'A natural tranquiliser for the nervous system. Inhale 4, hold 7, exhale 8.',
     gradient: ['#c4b0e0', '#e8e0f5'],
     accentColor: '#7058a8',
+    animationType: 'expanding-circle',
     phases: [
       { label: 'Inhale', duration: 4, type: 'inhale' },
       { label: 'Hold', duration: 7, type: 'hold' },
@@ -58,6 +61,7 @@ export const TECHNIQUES = [
       'Breathing at 5 breaths per minute synchronises your heart and nervous system.',
     gradient: ['#a8d8c0', '#d0f0e0'],
     accentColor: '#38967a',
+    animationType: 'expanding-circle',
     phases: [
       { label: 'Inhale', duration: 6, type: 'inhale' },
       { label: 'Exhale', duration: 6, type: 'exhale' },
@@ -72,6 +76,7 @@ export const TECHNIQUES = [
       'A longer exhale activates the parasympathetic system, shifting you from stress to rest.',
     gradient: ['#d8c4a8', '#f0e8d8'],
     accentColor: '#b07840',
+    animationType: 'expanding-circle',
     phases: [
       { label: 'Inhale', duration: 4, type: 'inhale' },
       { label: 'Exhale', duration: 8, type: 'exhale' },
@@ -86,6 +91,7 @@ export const TECHNIQUES = [
       'An ancient yogic technique that balances the two hemispheres of the brain.',
     gradient: ['#e0b8c8', '#f5dde8'],
     accentColor: '#a84868',
+    animationType: 'alternate-nostril',
     dualNostril: true,
     phases: [
       { label: 'Inhale', duration: 4, type: 'inhale', nostril: 'left' },
@@ -105,6 +111,7 @@ export const TECHNIQUES = [
       'Two nasal inhales followed by a long exhale. Rapidly reduces stress by deflating the air sacs in the lungs.',
     gradient: ['#f0c8a8', '#f8e8d8'],
     accentColor: '#c06840',
+    animationType: 'physiological-sigh',
     phases: [
       { label: 'Inhale (nose)', duration: 2, type: 'inhale', targetRatio: 0.65 },
       { label: 'Second inhale (nose)', duration: 1, type: 'inhale', targetRatio: 1.0 },
@@ -120,6 +127,7 @@ export const TECHNIQUES = [
       'Inhale through the nose, exhale slowly through pursed lips. Helps ease shortness of breath.',
     gradient: ['#c0d8a8', '#dff0d0'],
     accentColor: '#5a9040',
+    animationType: 'expanding-circle',
     phases: [
       { label: 'Inhale', duration: 2, type: 'inhale' },
       { label: 'Exhale (pursed lips)', duration: 4, type: 'exhale' },
