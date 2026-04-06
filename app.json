@@ -33,6 +33,15 @@
       "eas": {
         "projectId": "c30425d4-99c1-4857-befe-49cc1310cf04"
       }
-    }
+    },
+    "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "iosAppId": "ca-app-pub-9015796764047989~1213490456"
+        }
+      ]
+    ]
   }
 }
