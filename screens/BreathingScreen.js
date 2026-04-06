@@ -121,7 +121,7 @@ export default function BreathingScreen({ technique, onBack }) {
           <Text style={[styles.phaseLabel, { color: technique.accentColor }, (status !== 'running' || technique.dualNostril) && styles.hidden]}>
             {phaseLabel || ' '}
           </Text>
-          <Text style={[styles.countdown, { color: technique.accentColor }, (status !== 'running' || countdown === null || technique.dualNostril) && styles.hidden]}>
+          <Text style={[styles.countdown, { color: technique.accentColor }, (status !== 'running' || countdown === null) && styles.hidden]}>
             {countdown ?? ' '}
           </Text>
         </View>
