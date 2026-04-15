@@ -23,6 +23,7 @@ const ad = RewardedAd.createForAdRequest(REWARDED_AD_UNIT_ID, {
 export default function HomeScreen({ onSelect, scrollOffset }) {
   const scrollRef = useRef(null);
   const [adLoaded, setAdLoaded] = useState(false);
+  const pendingShow = useRef(false);
 
   useEffect(() => {
     if (scrollOffset.current > 0 && scrollRef.current) {
@@ -33,11 +34,19 @@ export default function HomeScreen({ onSelect, scrollOffset }) {
   useEffect(() => {
     const onLoaded = ad.addAdEventListener(RewardedAdEventType.LOADED, () => {
       setAdLoaded(true);
+      if (pendingShow.current) {
+        pendingShow.current = false;
+        ad.show();
+      }
     });
     const onEarned = ad.addAdEventListener(RewardedAdEventType.EARNED_REWARD, () => {});
     const onClosed = ad.addAdEventListener(AdEventType.CLOSED, () => {
       setAdLoaded(false);
       ad.load();
+    });
+    const onError = ad.addAdEventListener(AdEventType.ERROR, () => {
+      setAdLoaded(false);
+      setTimeout(() => ad.load(), 5000);
     });
     ad.load();
 
@@ -45,12 +54,15 @@ export default function HomeScreen({ onSelect, scrollOffset }) {
       onLoaded();
       onEarned();
       onClosed();
+      onError();
     };
   }, []);
 
   const handleSupport = useCallback(() => {
     if (adLoaded) {
       ad.show();
+    } else {
+      pendingShow.current = true;
     }
   }, [adLoaded]);
 
